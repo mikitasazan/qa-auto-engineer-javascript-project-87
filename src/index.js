@@ -1,12 +1,7 @@
 import _ from 'lodash';
 import parse from './parsers.js';
 
-const formatValue = (value) => {
-  if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
-    return '[complex value]';
-  }
-  return String(value);
-};
+const formatValue = (value) => String(value);
 
 const buildStylishDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));

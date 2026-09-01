@@ -10,6 +10,8 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
     "gendiff": "node bin/gendiff.js"
   },
   "repository": {
@@ -28,6 +30,9 @@
     "lodash": "^4.18.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^10.9.1",
     "vitest": "^4.1.11"
   }
 }
