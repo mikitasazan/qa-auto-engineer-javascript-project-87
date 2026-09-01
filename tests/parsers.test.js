@@ -16,6 +16,16 @@ test('parse reads and parses a JSON file', () => {
   });
 });
 
+test('parse reads and parses a YAML file', () => {
+  const data = parse(getFixturePath('file1.yml'));
+  expect(data).toEqual({
+    host: 'hexlet.io',
+    timeout: 50,
+    proxy: '123.234.53.22',
+    follow: false,
+  });
+});
+
 test('parse throws on an unsupported file extension', () => {
   expect(() => parse(getFixturePath('file1.unsupported'))).toThrow(
     "Unknown file extension: 'unsupported'",
