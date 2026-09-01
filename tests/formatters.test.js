@@ -1,5 +1,6 @@
 import { test, expect } from 'vitest';
 import formatDiff from '../src/formatters/index.js';
+import jsonFormatter from '../src/formatters/json.js';
 
 test('formatDiff throws on an unknown format name', () => {
   expect(() => formatDiff([], 'unknown-format')).toThrow("Unknown format: 'unknown-format'");
@@ -35,4 +36,26 @@ test('plain formatter skips unchanged properties and quotes strings, but not num
       "Property 'd' was updated. From false to true",
     ].join('\n'),
   );
+});
+
+test('json formatter returns valid, parseable JSON reflecting the diff tree', () => {
+  const diff = [
+    {
+      key: 'a', type: 'unchanged', value1: 1, value2: 1,
+    },
+    {
+      key: 'b', type: 'changed', value1: 'old', value2: 'new',
+    },
+  ];
+
+  const result = jsonFormatter(diff);
+  expect(() => JSON.parse(result)).not.toThrow();
+  expect(JSON.parse(result)).toEqual(diff);
+});
+
+test('formatDiff dispatches to the json formatter', () => {
+  const diff = [{
+    key: 'a', type: 'added', value1: undefined, value2: 1,
+  }];
+  expect(formatDiff(diff, 'json')).toBe(jsonFormatter(diff));
 });

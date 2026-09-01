@@ -37,6 +37,28 @@ describe.each([
     const actual = genDiff(getFixturePath(file1), getFixturePath(file2), 'plain');
     expect(actual).toBe(expected);
   });
+
+  test('finds differences in json format (valid, parseable JSON)', () => {
+    const actual = genDiff(getFixturePath(file1), getFixturePath(file2), 'json');
+    expect(() => JSON.parse(actual)).not.toThrow();
+    expect(JSON.parse(actual)).toEqual([
+      {
+        key: 'follow', type: 'removed', value1: false, value2: undefined,
+      },
+      {
+        key: 'host', type: 'unchanged', value1: 'hexlet.io', value2: 'hexlet.io',
+      },
+      {
+        key: 'proxy', type: 'removed', value1: '123.234.53.22', value2: undefined,
+      },
+      {
+        key: 'timeout', type: 'changed', value1: 50, value2: 20,
+      },
+      {
+        key: 'verbose', type: 'added', value1: undefined, value2: true,
+      },
+    ]);
+  });
 });
 
 test('genDiff throws on an unknown format name', () => {
