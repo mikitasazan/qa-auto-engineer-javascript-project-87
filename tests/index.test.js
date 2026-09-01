@@ -31,6 +31,12 @@ describe.each([
     const actual = genDiff(relative1, relative2);
     expect(actual).toBe(expected);
   });
+
+  test('finds differences in plain format', () => {
+    const expected = readFixture('expectedPlain.txt');
+    const actual = genDiff(getFixturePath(file1), getFixturePath(file2), 'plain');
+    expect(actual).toBe(expected);
+  });
 });
 
 test('genDiff throws on an unknown format name', () => {
