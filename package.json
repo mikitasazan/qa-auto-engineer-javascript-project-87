@@ -1,0 +1,32 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Вычислитель отличий — CLI-утилита, определяющая разницу между двумя структурами данных (JSON/YAML)",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "gendiff": "./bin/gendiff.js"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gendiff": "node bin/gendiff.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikitasazan/qa-auto-engineer-javascript-project-87.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikitasazan/qa-auto-engineer-javascript-project-87/issues"
+  },
+  "homepage": "https://github.com/mikitasazan/qa-auto-engineer-javascript-project-87#readme",
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.11"
+  }
+}
